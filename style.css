@@ -1,40 +1,124 @@
+:root {
+    /* light mode colors */
+    --bg: rgba(161, 161, 161,);
+    --panel: #cecece;
+    --text: #121212;
+    --accent: #e3dbdb;
+  }
+  
+  body.dark {
+    /* dark mode overrides */
+    --bg: rgba(20, 20, 20,);
+    --panel: #262626;
+    --text: #e0e0e0;
+    --accent: #333333;
+  }
+  
+
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: rgb(242, 242, 242);
+    margin: 0;
+    padding: 0;
+    background-image: url('blurry-gradient-haikei.svg');
+    background-repeat: no-repeat;
+    background-size: cover; /* or 'contain' if you want to see the full SVG */
+    background-position: center center;
+    background-attachment: fixed;
+    background-color: var(--bg);
+    color: var(--text);
 }
 
 .container {
     max-width: 400px;
     margin: 0 auto;
     text-align: center;
-    padding: 20px;
-    background-color: rgba(242, 242, 242, 0.5);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-    margin-top: 50px;
+    padding: 30px;
+    background-color: var(--panel);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    margin-top: 30px;
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 2em;
+    font-weight: lighter;
 }
 
 input[type="text"] {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 12px;
+    color: #121212;
+    font-size: 1em;
 }
 
 button {
     background-color: #f3f3f3;
-    color: #333;
+    color: #121212;
     border: none;
     padding: 10px 20px;
+    margin-top: 20px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 12px;
 }
 
 .weather-info {
     margin-top: 20px;
+    font-size: 1em;
+}
+
+.weather-emoji { 
+    font-size: 2.5em;
+    margin-right: 0.3em;
+}
+
+#temp-value {
+     font-size: 2em;
+}
+
+#description {
+    font-size: 2em;
+    margin-top: 0.5em;
+    text-transform: capitalize;  /* e.g. make “light rain” → “Light Rain” */
+  }
+
+#location {
+    font-size: 2em;
+    font-weight: lighter;
+
+}
+
+#themeToggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--accent);
+    border: none;
+    padding: 0.5rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  @media (max-width: 600px) {
+    #themeToggle {
+      font-size: 1rem;
+      padding: 0.4rem;
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+  }
+  
+
+.name {
+    font-size: 10px;
+    text-align: center;
 }

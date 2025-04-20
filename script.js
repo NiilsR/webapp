@@ -28,3 +28,60 @@ function fetchWeather(location) {
             console.error('Error fetching weather data:', error);
         });
 }
+
+// Define a map from weather condition to emoji
+const weatherEmoji = {
+    Clear:    "☀️",
+    Clouds:   "☁️",
+    Rain:     "🌧️",
+    Drizzle:  "🌦️",
+    Thunderstorm: "⛈️",
+    Snow:     "❄️",
+    Mist:     "🌫️",
+    Smoke:    "💨",
+    Haze:     "💨",
+    Dust:     "🌪️",
+    Fog:      "🌫️",
+    Sand:     "🌪️",
+    Ash:      "🌋",
+    Squall:   "🌬️",
+    Tornado:  "🌪️"
+  };
+  
+  // In your fetchWeather callback, grab the `main` and look up the emoji
+  function fetchWeather(location) {
+    const url = `${apiUrl}?q=${location}&appid=${apiKey}&units=metric`;
+  
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        const { main, description } = data.weather[0];
+        const temp = Math.round(data.main.temp);
+        const emoji = weatherEmoji[main] || "❓";
+  
+        locationElement.textContent    = data.name;
+        descriptionElement.textContent = description;
+  
+        document.querySelector(".weather-emoji").textContent = emoji;
+        document.getElementById("temp-value").textContent = `${temp}°C`;
+      })
+      .catch(console.error);
+  }
+
+  const toggleBtn = document.getElementById('themeToggle');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+  const currentTheme = localStorage.getItem('theme');
+  
+  // 1) On load, apply stored theme or OS preference
+  if (currentTheme === 'dark' || (!currentTheme && prefersDark.matches)) {
+    document.body.classList.add('dark');
+    toggleBtn.textContent = '☀️';
+  }
+  
+  // 2) When user clicks the button…
+  toggleBtn.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark');
+    toggleBtn.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+  

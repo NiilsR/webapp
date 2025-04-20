@@ -13,9 +13,21 @@
         <button id="searchButton">Search</button>
         <div class="weather-info">
             <h2 id="location"></h2>
-            <p id="temperature"></p>
+
+            <p id="temperature">
+                <span class="weather-emoji"></span>
+                <span id="temp-value"></span>
+            </p>
             <p id="description"></p>
         </div>
+        <p id="temperature"><span class="weather-emoji"></span> <span id="temp-value"></span></p>
+    </div>
+    <button id="themeToggle" aria-label="Toggle dark mode">
+        🌙
+    </button>
+
+    <div class="name">
+        <p>This was made by me</p>
     </div>
     <script src="script.js"></script>
 </body>
