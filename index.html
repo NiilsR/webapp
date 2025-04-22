@@ -7,28 +7,33 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Weather App</h1>
-        <input type="text" id="locationInput" placeholder="Enter a City">
-        <button id="searchButton">Search</button>
-        <div class="weather-info">
-            <h2 id="location"></h2>
+    <div class="app-wrapper">
+        <div class="weather-app">
+            <div class="search-panel">
+                <form id="searchForm">
+                    <input type="text" id="locationInput" placeholder="Enter a City">
+                    <button type="submit">Search</button>
+                </form>
+                    <div class="weather-info">
+                        <h2 id="location"></h2>
+                            <p id="temperature">
+                                <span class="weather-emoji"></span>
+                                <span id="temp-value"></span>
+                            </p>
+                        <p id="description"></p>
+                    </div>
+            </div>
 
-            <p id="temperature">
-                <span class="weather-emoji"></span>
-                <span id="temp-value"></span>
-            </p>
-            <p id="description"></p>
+            <aside class="search-history">
+                <h3>Recent Searches</h3>
+                <ul id="historyList"></ul>
+            </aside>
+            <button id="themeToggle" aria-label="Toggle dark mode">
+                🌙
+            </button>
         </div>
-        <p id="temperature"><span class="weather-emoji"></span> <span id="temp-value"></span></p>
     </div>
-    <button id="themeToggle" aria-label="Toggle dark mode">
-        🌙
-    </button>
 
-    <div class="name">
-        <p>This was made by me</p>
-    </div>
     <script src="script.js"></script>
 </body>
 </html>
