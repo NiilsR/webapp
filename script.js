@@ -76,13 +76,13 @@ const weatherEmoji = {
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
   const currentTheme = localStorage.getItem('theme');
   
-  // 1) On load, apply stored theme or OS preference
+  // On load, apply stored theme or OS preference
   if (currentTheme === 'dark' || (!currentTheme && prefersDark.matches)) {
     document.body.classList.add('dark');
     toggleBtn.textContent = '☀️';
   }
   
-  // 2) When user clicks the button…
+  // When user clicks the button…
   toggleBtn.addEventListener('click', () => {
     const isDark = document.body.classList.toggle('dark');
     toggleBtn.textContent = isDark ? '☀️' : '🌙';
@@ -90,19 +90,19 @@ const weatherEmoji = {
   });
 
 
-  // ① Load history from localStorage on init
+  // Load history from localStorage on init
 function loadHistory() {
   const stored = localStorage.getItem(historyKey);
   history = stored ? JSON.parse(stored) : [];
   renderHistory();
 }
 
-// ② Save history to localStorage
+// Save history to localStorage
 function saveHistory() {
   localStorage.setItem(historyKey, JSON.stringify(history));
 }
 
-// ③ Add a city to history (ensuring uniqueness & max 4)
+// Add a city to history (ensuring uniqueness & max 4)
 function addToHistory(city) {
   // remove if already there
   history = history.filter(item => item.toLowerCase() !== city.toLowerCase());
@@ -114,7 +114,7 @@ function addToHistory(city) {
   renderHistory();
 }
 
-// ④ Render the list into the DOM
+// Render the list into the DOM
 function renderHistory() {
   const ul = document.getElementById('historyList');
   ul.innerHTML = '';          // clear old items
@@ -139,19 +139,32 @@ loadHistory();
 // 2) Whenever you do a successful search in fetchWeather:
 function fetchWeather(location) {
   const url = `${apiUrl}?q=${location}&appid=${apiKey}&units=metric`;
+
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      // … your existing DOM updates …
+      // Emoji
       document.querySelector('.weather-emoji').textContent =
         weatherEmoji[data.weather[0].main] || '❓';
+
+      // Weather data
       document.getElementById('temp-value').textContent =
         `${Math.round(data.main.temp)}°C`;
-
-      locationElement.textContent    = data.name;
+      locationElement.textContent = data.name;
       descriptionElement.textContent = data.weather[0].description;
 
-      // —— NEW —— add to history:
+      // Local time logic starts here:
+      const timezoneOffset = data.timezone; // in seconds
+      const utc = new Date().getTime() + (new Date().getTimezoneOffset() * 60000);
+      const localTime = new Date(utc + (timezoneOffset * 1000));
+
+      const hours = localTime.getHours().toString().padStart(2, '0');
+      const minutes = localTime.getMinutes().toString().padStart(2, '0');
+      const formattedTime = `${hours}:${minutes}`;
+
+      document.getElementById('local-time').textContent = `Local Time: ${formattedTime}`;
+
+      // Save to history
       addToHistory(data.name);
     })
     .catch(console.error);
