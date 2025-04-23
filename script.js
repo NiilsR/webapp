@@ -1,3 +1,4 @@
+// TODO REFACTOR CODE
 const apiKey = 'dd195862e3080374f4b778029e11cd27';
 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
