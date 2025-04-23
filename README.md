@@ -7,12 +7,13 @@
 - **Location Search:** Get current weather by searching for any city worldwide.
 - **Dark Mode:** Toggle between light and dark themes for better readability and comfort.
 - **Search History:** Keeps a history of previously searched locations for quick access.
+- **Local Time:** You can see the City's local time when you search for it.
 
 ## Demo
 
 THIS IS STILL WIP
 
-*Add link here if hosted online (e.g., GitHub Pages, Vercel, Netlify).*
+**
 
 ## Technologies Used
 
