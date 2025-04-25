@@ -47,6 +47,13 @@ body {
   flex: 1;
 }
 
+.error-message {
+  color: #c00;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  min-height: 1.2em; /* reserve space so layout doesn’t jump */
+}
+
 /* history sidebar */
 .search-history {
   width: 250px;

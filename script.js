@@ -9,6 +9,7 @@ const emojiEl = document.querySelector('.weather-emoji');           // Displays 
 const timeEl = document.getElementById('local-time');               // Displays the local time of the city
 const historyListEl = document.getElementById('historyList');       // Displays recent search history
 const themeToggleBtn = document.getElementById('themeToggle');      // Button to toggle dark/light theme
+const errorEl = document.getElementById('error-message');           // Displays errors to user
 
 // ==== Cache Constants and State ====
 const CACHE_KEY = 'weatherApiCache';
@@ -185,9 +186,19 @@ function fetchWeather(city) {
     .then(res => res.json())                     // Convert response to JSON
     .then(data => {
       if (data.cod !== 200) {                    // If city not found
-        console.error('City not found:', data.message);
+        // Show error on page
+        errorEl.textContent = 'Please enter a valid city name.';
+        // Clear out old weather info
+        locationElement.textContent = '';
+        descriptionEl.textContent = '';
+        tempValueEl.textContent = '';
+        emojiEl.textContent = '';
+        timeEl.textContent = '';
         return;
       }
+
+      // On success clear any error and update UI + cache + history
+      errorEl.textContent = '';
       // option a Update UI + history
       updateWeatherUI(data);                     // Update city, temp, emoji, etc
       updateLocalTime(data.timezone);            // Update local time
