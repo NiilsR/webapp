@@ -161,11 +161,24 @@ function setCacheWeather(cityLower, data) {
 // ==== Main App Logic ====
 
 /**
- * Fetches weather data for a given city from the API
- * then updates the UI and history if successful
- * @param {string} city - The city name to search for
- */
+  * Fetches weather data for a given city from the API
+  * then updates the UI and history if successful
+  * @param {string} city - The city name to search for
+  */
 function fetchWeather(city) {
+  const cityLower = city.trim().toLowerCase();
+
+  // Try to get a fresh cached entry
+  const cached = getCachedWeather(cityLower);
+  if (cached) {
+    console.log('⏳ Using cached data for ${city}');
+    updateWeatherUI(cached);
+    updateLocalTime(cached.timezone);
+    addToHistory(cached.name);
+    return;
+  }
+
+  // No cache or state fetch from API
   const url = `${API_URL}?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`;
 
   fetch(url)
@@ -175,9 +188,13 @@ function fetchWeather(city) {
         console.error('City not found:', data.message);
         return;
       }
+      // option a Update UI + history
       updateWeatherUI(data);                     // Update city, temp, emoji, etc
       updateLocalTime(data.timezone);            // Update local time
       addToHistory(data.name);                   // Save to history
+
+      // option b Cache this fresh response
+      setCacheWeather(cityLower, data);
     })
     .catch(err => console.error('Weather fetch error:', err)); // Handle errors
 }
@@ -209,4 +226,4 @@ function loadHistory() {
 // Runs on page load
 initTheme();   // Set up theme (dark/light)
 loadHistory(); // Load and display previous search history
-loadCache();
+localCache();

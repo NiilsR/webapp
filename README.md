@@ -8,6 +8,8 @@
 - **Dark Mode:** Toggle between light and dark themes for better readability and comfort.
 - **Search History:** Keeps a history of previously searched locations for quick access.
 - **Local Time:** You can see the City's local time when you search for it.
+- **API Response Caching:** Caches weather data in the browser with a 10-minute time-to-live (TTL) to reduce API calls and improve performance.
+
 
 ## Demo
 
