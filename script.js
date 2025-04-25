@@ -13,7 +13,7 @@ const errorEl = document.getElementById('error-message');           // Displays 
 
 // ==== Cache Constants and State ====
 const CACHE_KEY = 'weatherApiCache';
-const CACHE_TTL = 10 * 60 * 1000; // 10 minutes in milliseconds
+const CACHE_TTL = 2 * 60 * 1000; // 2 minutes in milliseconds
 let weatherCache = {}; // { [cityLower]: { timestamp: ms, data: {...} } }
 
 // ==== Constants and State ====
