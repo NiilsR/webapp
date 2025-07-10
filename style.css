@@ -170,7 +170,7 @@ h3 { font-size: 1.2rem; }
   top: 1rem;             /* 1rem from top */
   right: 1rem;           /* 1rem from right */
   z-index: 1000;         /* sit above other content */
-  background: var(--accent);
+  background: var(--color-accent);
   border: none;
   padding: 0.5rem;
   border-radius: 50%;

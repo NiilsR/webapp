@@ -172,7 +172,7 @@ function fetchWeather(city) {
   // Try to get a fresh cached entry
   const cached = getCachedWeather(cityLower);
   if (cached) {
-    console.log('⏳ Using cached data for ${city}');
+    console.log(`⏳ Using cached data for ${city}`);
     updateWeatherUI(cached);
     updateLocalTime(cached.timezone);
     addToHistory(cached.name);
