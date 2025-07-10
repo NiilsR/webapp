@@ -11,14 +11,17 @@
   <div class="app-wrapper">
     <!-- Weather content -->
     <div class="weather-app">
-      <div class="search-panel">
+      <div class="search-panel card">
         <form id="searchForm">
           <input type="text" id="locationInput" placeholder="Enter a City">
-          <button type="submit">Search</button>
+            <button type="submit" aria-label="Search">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span class="sr-only">Search</span>
+            </button>
           <p id="error-message" class="error-message"></p>
         </form>
 
-        <div class="weather-info">
+        <div class="weather-info card">
           <h2 id="location"></h2>
           <p id="temperature">
             <span class="weather-emoji"></span>
@@ -30,13 +33,15 @@
       </div>
     </div>
 
-    <aside class="search-history">
+    <aside class="search-history card">
       <h3>Recent Searches</h3>
       <ul id="historyList"></ul>
     </aside>
   </div>
 
-  <button id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+  <button id="themeToggle" aria-label="Toggle dark mode">
+    <svg id="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+  </button>
 
   <script src="script.js"></script>
 </body>

@@ -4,8 +4,8 @@
   --color-bg-dark:  hsl(210, 30%, 8%);
   --color-panel-light: hsl(0, 0%, 100%);
   --color-panel-dark:  hsl(210, 30%, 20%);
-  --color-primary:    hsl(200, 80%, 50%);
-  --color-accent:     hsl(200, 100%, 65%);
+  --color-primary:    hsl(212, 35%, 45%);
+  --color-accent:     hsl(212, 45%, 55%);
   --color-text-light: hsl(210, 10%, 20%);
   --color-text-dark:  hsl(210, 10%, 90%);
   
@@ -52,13 +52,19 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: var(--color-bg);
+  background-color: var(--color-bg);
+  background-image: url('blurry-gradient-haikei.svg');
+  background-size: cover;
+  background-attachment: fixed;
   color: var(--color-text);
   font-family: var(--font-body);
-  line-height: 1.5;
+  line-height: 1.6;
   display: flex;
   justify-content: center;
   padding: var(--space-lg);
+}
+body.dark {
+  background-image: none;
 }
 
 .card {
@@ -75,7 +81,7 @@ body {
 .app-wrapper {
   display: grid;
   grid-template-columns: 1fr 250px;
-  gap: var(--space-lg);
+  gap: var(--space-xl);
   max-width: 900px;
   width: 100%;
 }
@@ -95,11 +101,12 @@ body {
 
 .search-panel input {
   flex: 1;
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-md) var(--space-md);
   border: 1px solid hsl(210,10%,80%);
-  border-radius: var(--space-xs);
+  border-radius: var(--space-sm);
   font-size: 1rem;
-  transition: border-color 0.2s;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .search-panel input:focus {
   border-color: var(--color-primary);
@@ -118,6 +125,18 @@ body {
 }
 .search-panel button:hover {
   background: var(--color-accent);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 h1, h2, h3 {
@@ -174,6 +193,9 @@ h3 { font-size: 1.2rem; }
   border: none;
   padding: 0.5rem;
   border-radius: 50%;
-  font-size: 1.2rem;
   cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
